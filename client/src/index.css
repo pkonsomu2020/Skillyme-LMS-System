@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 230 57% 7%;
+    --foreground: 0 0% 100%;
+    --card: 232 50% 11%;
+    --card-foreground: 0 0% 100%;
+    --popover: 232 50% 11%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 170 100% 44%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 258 100% 61%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 233 44% 15%;
+    --muted-foreground: 220 40% 90%;
+    --accent: 170 100% 44%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 100% 65%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 230 30% 18%;
+    --input: 230 30% 20%;
+    --ring: 170 100% 44%;
+    --radius: 6px;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    @apply bg-[#070B1A] text-white antialiased;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-feature-settings: 'cv11', 'ss01';
+    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+
+  * { @apply border-border; }
+}
+
+/* ─── City background ─────────────────────────────────── */
+.city-bg {
+  position: relative;
+  overflow: hidden;
+}
+.city-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/city-bg.jpg');
+  background-size: cover;
+  background-position: center 60%;
+  animation: ken-burns 14s ease-out both;
+  z-index: 0;
+}
+.city-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(7,11,26,0.92) 0%,
+    rgba(0,224,184,0.18) 45%,
+    rgba(7,11,26,0.95) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+.city-bg > * { position: relative; z-index: 2; }
+
+/* Fallback if no photo */
+.city-bg-fallback::before {
+  background-image: none !important;
+  background: linear-gradient(160deg, #070B1A 0%, #00E0B8 50%, #070B1A 100%);
+}
+
+/* ─── Navbar ───────────────────────────────────────────── */
+.navbar {
+  background: #070B1A;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.40);
+}
+
+/* ─── Cards ────────────────────────────────────────────── */
+.card {
+  background: #0F1328;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.40), 0 0 0 1px rgba(255,255,255,0.06);
+}
+.card-hover:hover {
+  box-shadow: 0 8px 24px rgba(0,224,184,0.15), 0 0 0 1px rgba(0,224,184,0.20);
+  transform: translateY(-2px);
+}
+
+/* ─── Label uppercase ──────────────────────────────────── */
+.label-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: #00E0B8;
+}
+.label-muted {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: #D9E2F2;
+}
+
+/* ─── Accent bar ───────────────────────────────────────── */
+.accent-bar {
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, #00E0B8 0%, #7B3CFF 100%);
+  border-radius: 2px;
+}
+
+/* ─── Stat card ────────────────────────────────────────── */
+.stat-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,224,184,0.12);
+}
+
+/* ─── Section backgrounds ──────────────────────────────── */
+.section-indigo {
+  background: #00E0B8;
+  color: #070B1A;
+}
+.section-pale {
+  background: rgba(0,224,184,0.08);
+  color: #FFFFFF;
+}
+
+/* ─── Mobile drawer ────────────────────────────────────── */
+.mobile-drawer {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: 280px;
+  background: #0F1328;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 4px 0 32px rgba(0,0,0,0.60);
+  z-index: 60;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mobile-drawer.open { transform: translateX(0); }
+.drawer-overlay {
+  position: fixed; inset: 0;
+  background: rgba(7,11,26,0.70);
+  backdrop-filter: blur(2px);
+  z-index: 55;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.drawer-overlay.open { opacity: 1; pointer-events: auto; }
+
+/* ─── Page fade ────────────────────────────────────────── */
+.page-fade { animation: fade-in 0.4s ease-out both; }
+
+/* ─── Scrollbar ────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: #070B1A; }
+::-webkit-scrollbar-thumb { background: rgba(123,60,255,0.40); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #7B3CFF; }
+
+/* ─── Focus ────────────────────────────────────────────── */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0,224,184,0.20);
+}
+
+/* ─── Invite link box ──────────────────────────────────── */
+.invite-link-box {
+  background: rgba(0,224,184,0.08);
+  border-left: 3px solid #00E0B8;
+  padding: 12px 16px;
+  word-break: break-all;
+  font-size: 0.8rem;
+  color: #D9E2F2;
+  font-family: 'JetBrains Mono', monospace;
+  border-radius: 0 4px 4px 0;
+}
+
+/* ─── Admin page ───────────────────────────────────────── */
+.admin-page { background: #070B1A; min-height: 100vh; }
+
+/* ─── Reveal scroll ────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── FullCalendar dark-theme overrides ────────────────── */
+.fc {
+  --fc-border-color: rgba(255,255,255,0.06);
+  --fc-page-bg-color: #0F1328;
+  --fc-neutral-bg-color: #161B35;
+  --fc-today-bg-color: rgba(0,224,184,0.08);
+  --fc-non-business-color: rgba(255,255,255,0.02);
+  --fc-event-border-color: transparent;
+  color: #D9E2F2;
+}
+.fc .fc-daygrid-day-number {
+  color: #D9E2F2;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+.fc .fc-day-today .fc-daygrid-day-number {
+  color: #00E0B8;
+  font-weight: 700;
+}
+.fc .fc-day-other .fc-daygrid-day-number {
+  color: rgba(217,226,242,0.30);
+}
+.fc .fc-col-header-cell-cushion {
+  color: #D9E2F2;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.fc .fc-toolbar-title {
+  color: #FFFFFF;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.fc .fc-button {
+  background: #161B35;
+  border: 1px solid rgba(255,255,255,0.10);
+  color: #D9E2F2;
+  font-size: 0.78rem;
+  font-weight: 500;
+  transition: background 0.15s ease;
+}
+.fc .fc-button:hover,
+.fc .fc-button-primary:not(.fc-button-active):not(:disabled):hover {
+  background: rgba(0,224,184,0.12);
+  border-color: rgba(0,224,184,0.30);
+  color: #00E0B8;
+}
+.fc .fc-button-primary.fc-button-active,
+.fc .fc-button-primary:not(:disabled).fc-button-active {
+  background: rgba(0,224,184,0.15);
+  border-color: #00E0B8;
+  color: #00E0B8;
+  box-shadow: none;
+}
+.fc .fc-button:focus,
+.fc .fc-button-primary:focus {
+  box-shadow: 0 0 0 2px rgba(0,224,184,0.25);
+}
+.fc .fc-timegrid-slot-label-cushion,
+.fc .fc-timegrid-axis-cushion {
+  color: rgba(217,226,242,0.50);
+  font-size: 0.72rem;
+}
+.fc .fc-event-title,
+.fc .fc-event-time {
+  color: #FFFFFF;
+  font-size: 0.75rem;
+}
+.fc .fc-scrollgrid,
+.fc .fc-scrollgrid-section > td,
+.fc .fc-scrollgrid-sync-table td,
+.fc .fc-scrollgrid-sync-table th {
+  border-color: rgba(255,255,255,0.06);
+}
+
+/* ─── Divider ──────────────────────────────────────────── */
+.gold-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #D9E2F2;
+  font-size: 12px;
+}
+.gold-divider::before,
+.gold-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+}
+
+/* ─── Gradient button ──────────────────────────────────── */
+.btn-gradient {
+  background: linear-gradient(90deg, #00E0B8 0%, #7B3CFF 100%);
+  color: #FFFFFF;
+  border: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.btn-gradient:hover {
+  opacity: 0.90;
+  transform: translateY(-1px);
+}
+
+/* ─── Nav active state ─────────────────────────────────── */
+.nav-active {
+  background: rgba(0,224,184,0.08);
+  border-left: 3px solid #00E0B8;
+  color: #00E0B8;
+}
+
+/* ─── Glow effects ─────────────────────────────────────── */
+.glow-teal  { box-shadow: 0 0 20px rgba(0,224,184,0.25); }
+.glow-purple { box-shadow: 0 0 20px rgba(123,60,255,0.25); }
+.glow-teal:hover  { box-shadow: 0 0 32px rgba(0,224,184,0.40); }
+.glow-purple:hover { box-shadow: 0 0 32px rgba(123,60,255,0.40); }
+
+/* ─── Milestone badge classes ──────────────────────────── */
+.badge-on-track {
+  background: rgba(0,224,184,0.12);
+  color: #00E0B8;
+  border: 1px solid rgba(0,224,184,0.25);
+}
+.badge-needs-attention {
+  background: rgba(255,184,0,0.12);
+  color: #FFB800;
+  border: 1px solid rgba(255,184,0,0.25);
+}
+.badge-late {
+  background: rgba(255,100,0,0.12);
+  color: #FF6400;
+  border: 1px solid rgba(255,100,0,0.25);
+}
+.badge-missed {
+  background: rgba(255,77,77,0.12);
+  color: #FF4D4D;
+  border: 1px solid rgba(255,77,77,0.25);
+}
+.badge-completed {
+  background: rgba(61,255,210,0.12);
+  color: #3DFFD2;
+  border: 1px solid rgba(61,255,210,0.25);
+}
