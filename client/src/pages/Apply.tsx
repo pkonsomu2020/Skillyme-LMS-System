@@ -180,7 +180,7 @@ export default function ApplyPage() {
     primaryRole: '',
     canCommit: '', sessionPreference: [] as string[], hoursPerWeek: '', commitment: '',
     applyingAs: 'INDIVIDUAL', hardshipReason: '', referralSource: '', additionalInfo: '',
-    confirmProgram: false, confirmIP: false, confirmAccuracy: false,
+    confirmProgram: false, confirmIP: false, confirmAccuracy: false, confirmPayment: false,
     teammates: Array.from({ length: 4 }, () => ({ firstName: '', lastName: '', email: '' })) as TeammateRow[],
   });
 
@@ -198,7 +198,7 @@ export default function ApplyPage() {
     2: !!form.primaryRole,
     3: !!(form.canCommit && form.sessionPreference.length && form.hoursPerWeek && form.commitment.trim()),
     4: !!(form.applyingAs && form.referralSource),
-    5: !!(form.confirmProgram && form.confirmIP && form.confirmAccuracy),
+    5: !!(form.confirmProgram && form.confirmIP && form.confirmAccuracy && form.confirmPayment),
   };
 
   const handleSubmit = async () => {
@@ -506,7 +506,7 @@ export default function ApplyPage() {
 
               <div>
                 <p className="text-xs font-semibold text-[#6B7280] uppercase tracking-widest mb-3">
-                  Confirmations — all three required to submit
+                  Confirmations — all four required to submit
                 </p>
                 <div className="space-y-3">
                   {[
@@ -524,6 +524,11 @@ export default function ApplyPage() {
                       key: 'confirmAccuracy',
                       checked: form.confirmAccuracy,
                       text: 'I confirm all information in this application is accurate and truthful.',
+                    },
+                    {
+                      key: 'confirmPayment',
+                      checked: form.confirmPayment,
+                      text: 'I acknowledge the programme participation fee and agree to pay it in full within the payment deadline specified in my acceptance email. I understand that my place is only confirmed upon receipt of payment.',
                     },
                   ].map(({ key, checked, text }) => (
                     <label key={key}
