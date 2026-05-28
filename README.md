@@ -94,17 +94,6 @@ This starts both:
 
 ---
 
-## First Login
-
-| Role | Email | Password |
-|---|---|---|
-| **Super Admin** | admin@skillyme.africa | Admin@1234 |
-| Facilitator | facilitator@skillyme.africa | Facilitator@1234 |
-| Mentor | mentor@skillyme.africa | Mentor@1234 |
-| Member (Alice) | alice@example.com | Member@1234 |
-
----
-
 ## Inviting Your First Real Participant
 
 1. Log in as Super Admin
