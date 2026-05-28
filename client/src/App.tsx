@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+﻿import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
@@ -52,7 +52,6 @@ const TeamsAdminPage   = lazy(() => import('@/pages/admin/Teams'));
 const MilestonesAdminPage    = lazy(() => import('@/pages/admin/Milestones'));
 const AnnouncementsAdminPage = lazy(() => import('@/pages/admin/Announcements'));
 const ApplicationsPage = lazy(() => import('@/pages/admin/Applications'));
-const Landing          = lazy(() => import('@/pages/Landing'));
 
 function PageSpinner() {
   return (
@@ -102,8 +101,8 @@ export default function App() {
               </Route>
             </Route>
 
-            {/* Public Landing */}
-            <Route path="/" element={<Landing />} />
+            {/* Default redirect */}
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
         </Suspense>

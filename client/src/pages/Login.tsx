@@ -63,33 +63,55 @@ export default function Login() {
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
 
-      {/* ── Left: brand panel with illustration background ── */}
-      <div className="bg-[#0A1A1A] relative lg:w-[52%] hidden lg:flex flex-col justify-end px-10 py-12 min-h-[400px] lg:min-h-screen overflow-hidden">
-        
-        {/* Background Illustration */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/login-illustration.png" 
-            alt="Skillyme Africa background" 
-            className="w-full h-full object-cover"
-          />
-          {/* Gradient overlay for text readability at the bottom */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#3730A3] via-[#3730A3]/70 to-transparent" />
-        </div>
-        
-        {/* Quote & Footer */}
-        <div className="relative z-10 w-full text-center mt-auto pt-24 pb-6">
-          <p className="text-white font-heading text-3xl lg:text-4xl leading-snug mb-2 font-bold drop-shadow-lg">
-            "Where bold ideas <br /> find their footing."
+      {/* ── Left: city / brand panel ── */}
+      <div className="city-bg relative lg:w-[52%] flex flex-col justify-between px-10 py-12 min-h-[300px] lg:min-h-screen">
+        <div className="relative z-10">
+          {/* Logo + name */}
+          <div className="flex items-center gap-3 mb-14">
+            <Logo size={36} />
+            <div>
+              <p className="text-white font-semibold text-sm tracking-wide">
+                {programName.split('—')[0].trim()}
+              </p>
+              <p className="text-[#F59E0B] text-[10px] uppercase tracking-widest font-semibold">
+                Cohort 2 · Build Track
+              </p>
+            </div>
+          </div>
+
+          <div className="accent-bar mb-5" />
+          <h1 className="font-heading text-4xl sm:text-5xl lg:text-[3.5rem] text-white leading-[1.1]">
+            Build something<br />
+            <span className="text-[#FCD34D]">that matters.</span>
+          </h1>
+          <p className="mt-5 text-white/60 text-sm leading-relaxed max-w-xs">
+            A six-week, outcome-based accelerator. Every team ships a validated MVP and closes a first paying client.
           </p>
-          <p className="text-white/90 text-sm lg:text-base drop-shadow-lg">
-            A platform built for Africa's next generation of builders.
-          </p>
+
+          <div className="mt-10 space-y-5">
+            {[
+              { label: 'Outcome-based', desc: 'Teams judged on real traction, not slides.' },
+              { label: 'You keep 100% IP', desc: 'Skillyme takes no equity and no IP.' },
+              { label: 'Led by operators', desc: 'Learn from people actively building.' },
+            ].map((f) => (
+              <div key={f.label} className="flex gap-3 items-start">
+                <div className="mt-2 w-1.5 h-1.5 rounded-full bg-[#F59E0B] flex-shrink-0" />
+                <div>
+                  <p className="text-white text-sm font-semibold">{f.label}</p>
+                  <p className="text-white/50 text-xs mt-0.5">{f.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
+
+        <p className="relative z-10 text-white/30 text-[10px] uppercase tracking-[0.2em]">
+          Nairobi · Kenya · 2026
+        </p>
       </div>
 
       {/* ── Right: login form ── */}
-      <div className="flex-1 bg-white flex items-center justify-center px-6 py-14 lg:py-0">
+      <div className="flex-1 bg-[#F8F7FF] flex items-center justify-center px-6 py-14 lg:py-0">
         <div className="w-full max-w-sm animate-fade-in">
 
           {/* Mobile logo — hidden on lg */}
@@ -101,22 +123,21 @@ export default function Login() {
             </div>
           </div>
 
-          <div className="mb-10">
-            <h2 className="font-heading text-4xl text-[#111827] font-bold">Welcome back</h2>
-            <p className="text-base text-[#111827]/80 mt-1.5">Sign in to your dashboard and team workspace.</p>
+          <div className="mb-8">
+            <p className="label-tag mb-2">Member Portal</p>
+            <h2 className="font-heading text-3xl text-[#111827]">Welcome back</h2>
+            <p className="text-sm text-[#6B7280] mt-1.5">Sign in to your dashboard and team workspace.</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <Input
-              label="Email Address"
+              label="Email address"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
               required
               autoComplete="email"
-              className="bg-gray-200 border-none shadow-none rounded-none focus:ring-[#3730A3] h-12"
-              labelClassName="!normal-case !text-lg !font-medium !text-black tracking-normal mb-2"
             />
             <Input
               label="Password"
@@ -126,8 +147,6 @@ export default function Login() {
               placeholder="••••••••"
               required
               autoComplete="current-password"
-              className="bg-gray-200 border-none shadow-none rounded-none focus:ring-[#3730A3] h-12"
-              labelClassName="!normal-case !text-lg !font-medium !text-black tracking-normal mb-2 mt-4"
             />
 
             {error && (
@@ -136,8 +155,8 @@ export default function Login() {
               </div>
             )}
 
-            <Button type="submit" loading={loading} className="w-full bg-[#3730A3] hover:bg-[#312E81] text-white uppercase font-bold tracking-widest rounded-none border-none h-12" size="lg">
-              SIGN IN
+            <Button type="submit" variant="primary" loading={loading} className="w-full" size="lg">
+              Sign in
             </Button>
           </form>
 

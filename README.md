@@ -59,7 +59,7 @@ Open `.env` and fill in:
 | `JWT_ACCESS_SECRET` | 64-byte random hex — generate with `node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"` |
 | `JWT_REFRESH_SECRET` | Different 64-byte random hex |
 | `SMTP_HOST / SMTP_USER / SMTP_PASS` | Gmail SMTP (or leave blank — emails log to console) |
-| `FRONTEND_URL` | `https://portal.skillyme.africa` |
+| `FRONTEND_URL` | `http://localhost:5173` |
 | `PORT` | `4000` |
 | `PROGRAM_NAME` | Displayed in the UI and emails |
 
@@ -89,8 +89,8 @@ npm run dev
 ```
 
 This starts both:
-- **Backend** at https://portal.skillyme.africa
-- **Frontend** at https://portal.skillyme.africa
+- **Backend** at http://localhost:4000
+- **Frontend** at http://localhost:5173
 
 ---
 
@@ -224,7 +224,7 @@ All API routes are under `/api`. Protected routes require `Authorization: Bearer
 | `SMTP_PASS` | | — | SMTP password/app password |
 | `SMTP_FROM` | | — | Sender address in emails |
 | `ADMIN_EMAIL` | | admin@skillyme.africa | Shown in emails for support contact |
-| `FRONTEND_URL` | | https://portal.skillyme.africa | Used in invitation email links |
+| `FRONTEND_URL` | | http://localhost:5173 | Used in invitation email links |
 | `PORT` | | `4000` | Backend server port |
 | `PROGRAM_NAME` | | `Skillyme Africa — Cohort 2: Build Track` | Displayed in UI and emails |
 | `MAX_UPLOAD_SIZE` | | `5242880` | Max file upload size in bytes |

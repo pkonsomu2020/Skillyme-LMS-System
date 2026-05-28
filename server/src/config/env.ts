@@ -21,7 +21,7 @@ export const env = {
   SMTP_PASS: process.env.SMTP_PASS || '',
   SMTP_FROM: process.env.SMTP_FROM || 'Skillyme Africa <no-reply@skillyme.africa>',
   ADMIN_EMAIL: process.env.ADMIN_EMAIL || 'admin@skillyme.africa',
-  FRONTEND_URL: process.env.FRONTEND_URL || 'https://portal.skillyme.africa',
+  FRONTEND_URL: process.env.FRONTEND_URL || 'http://localhost:5173',
   PORT: parseInt(process.env.PORT || '4000'),
   PROGRAM_NAME: process.env.PROGRAM_NAME || 'Skillyme Africa — Cohort 2: Build Track',
   MAX_UPLOAD_SIZE: parseInt(process.env.MAX_UPLOAD_SIZE || '5242880'),

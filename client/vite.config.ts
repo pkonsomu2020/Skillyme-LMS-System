@@ -13,11 +13,11 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
-        target: 'https://portal.skillyme.africa',
+        target: 'http://localhost:4000',
         changeOrigin: true,
       },
       '/uploads': {
-        target: 'https://portal.skillyme.africa',
+        target: 'http://localhost:4000',
         changeOrigin: true,
       },
     },

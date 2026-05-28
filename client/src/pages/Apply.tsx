@@ -90,7 +90,7 @@ function RadioGroup({
 }) {
   return (
     <div>
-      <p className="text-xs font-semibold text-white/70 uppercase tracking-widest mb-3">
+      <p className="text-xs font-semibold text-[#6B7280] uppercase tracking-widest mb-3">
         {label}{required && <span className="text-[#DC2626] ml-1">*</span>}
       </p>
       <div className="space-y-2">
@@ -98,21 +98,21 @@ function RadioGroup({
           <label key={o.value}
             className={`flex items-start gap-3 px-4 py-3 border cursor-pointer transition-all ${
               value === o.value
-                ? 'border-primary bg-primary/20'
-                : 'border-white/10 bg-surface-card hover:border-primary/50 hover:bg-surface-alt/40'
+                ? 'border-[#3730A3] bg-[#EEF2FF]'
+                : 'border-[#111827]/12 bg-white hover:border-[#3730A3]/50 hover:bg-[#F8F7FF]'
             }`}>
-            <div className={`mt-0.5 w-4 h-4 border-2 flex items-center justify-center flex-shrink-0 rounded-full ${
-              value === o.value ? 'border-primary' : 'border-white/20'
-            }`} >
+            <div className={`mt-0.5 w-4 h-4 border-2 flex items-center justify-center flex-shrink-0 ${
+              value === o.value ? 'border-[#3730A3]' : 'border-[#111827]/25'
+            }`} style={{ borderRadius: '50%' }}>
               {value === o.value && (
-                <div className="w-2 h-2 bg-primary rounded-full"  />
+                <div className="w-2 h-2 bg-[#3730A3]" style={{ borderRadius: '50%' }} />
               )}
             </div>
             <div>
-              <p className={`text-sm font-semibold ${value === o.value ? 'text-white' : 'text-white/70'}`}>
+              <p className={`text-sm font-semibold ${value === o.value ? 'text-[#111827]' : 'text-[#6B7280]'}`}>
                 {o.label}
               </p>
-              {o.desc && <p className="text-xs text-white/50 mt-0.5">{o.desc}</p>}
+              {o.desc && <p className="text-xs text-[#6B7280]/70 mt-0.5">{o.desc}</p>}
             </div>
             <input type="radio" className="sr-only" value={o.value}
               checked={value === o.value} onChange={() => onChange(o.value)} />
@@ -136,7 +136,7 @@ function CheckGroup({
     onChange(values.includes(v) ? values.filter((x) => x !== v) : [...values, v]);
   return (
     <div>
-      <p className="text-xs font-semibold text-white/70 uppercase tracking-widest mb-3">{label}</p>
+      <p className="text-xs font-semibold text-[#6B7280] uppercase tracking-widest mb-3">{label}</p>
       <div className="space-y-2">
         {options.map((o) => {
           const checked = values.includes(o.value);
@@ -144,15 +144,15 @@ function CheckGroup({
             <label key={o.value}
               className={`flex items-center gap-3 px-4 py-3 border cursor-pointer transition-all ${
                 checked
-                  ? 'border-primary bg-primary/20'
-                  : 'border-white/10 bg-surface-card hover:border-primary/50 hover:bg-surface-alt/40'
+                  ? 'border-[#3730A3] bg-[#EEF2FF]'
+                  : 'border-[#111827]/12 bg-white hover:border-[#3730A3]/50 hover:bg-[#F8F7FF]'
               }`}>
-              <div className={`w-4 h-4 border-2 flex items-center justify-center flex-shrink-0 rounded-sm transition-colors ${
-                checked ? 'border-primary bg-primary' : 'border-white/20'
+              <div className={`w-4 h-4 border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
+                checked ? 'border-[#3730A3] bg-[#3730A3]' : 'border-[#111827]/25'
               }`}>
-                {checked && <span className="text-white text-[10px] font-bold leading-none">✓</span>}
+                {checked && <span className="text-[#111827] text-[10px] font-bold leading-none">✓</span>}
               </div>
-              <span className={`text-sm ${checked ? 'text-white font-semibold' : 'text-white/70'}`}>
+              <span className={`text-sm ${checked ? 'text-[#111827] font-semibold' : 'text-[#6B7280]'}`}>
                 {o.label}
               </span>
               <input type="checkbox" className="sr-only" checked={checked} onChange={() => toggle(o.value)} />
@@ -239,19 +239,19 @@ export default function ApplyPage() {
   /* ── Success screen ───────────────────────────────── */
   if (submitted) {
     return (
-      <div className="min-h-screen bg-surface-alt/40 flex items-center justify-center p-6">
-        <div className="bg-surface-card border border-white/10 p-10 max-w-md w-full text-center shadow-card">
-          <div className="w-14 h-14 bg-primary/20 flex items-center justify-center mx-auto mb-5">
+      <div className="min-h-screen bg-[#F8F7FF] flex items-center justify-center p-6">
+        <div className="bg-white border border-[#111827]/08 p-10 max-w-md w-full text-center shadow-card">
+          <div className="w-14 h-14 bg-[#EEF2FF] flex items-center justify-center mx-auto mb-5">
             <CheckCircle2 size={28} className="text-[#3730A3]" />
           </div>
-          <h2 className="font-heading text-3xl text-white mb-3">Application Received</h2>
-          <p className="text-white/70 text-sm leading-relaxed">
+          <h2 className="font-heading text-3xl text-[#111827] mb-3">Application Received</h2>
+          <p className="text-[#6B7280] text-sm leading-relaxed">
             Thank you for applying to{' '}
-            <strong className="text-white">Skillyme Africa — Cohort 2: Build Track</strong>.
+            <strong className="text-[#111827]">Skillyme Africa — Cohort 2: Build Track</strong>.
             We will review your application and send your decision email between{' '}
             <strong>18–21 June 2026</strong>.
           </p>
-          <p className="text-xs text-white/50 mt-6 uppercase tracking-widest">
+          <p className="text-xs text-[#6B7280]/60 mt-6 uppercase tracking-widest">
             Applications close 17 June 2026
           </p>
         </div>
@@ -263,10 +263,10 @@ export default function ApplyPage() {
   const progress = Math.round(((step + 1) / SECTIONS.length) * 100);
 
   return (
-    <div className="min-h-screen city-bg flex flex-col">
+    <div className="min-h-screen bg-[#F8F7FF]">
 
       {/* ── Hero header ── */}
-      <div className="px-6 pt-10 pb-14 relative z-10">
+      <div className="city-bg px-6 pt-10 pb-14">
         <div className="max-w-2xl mx-auto text-center relative z-10">
           <p className="label-tag mb-3">Cohort 2 · Build Track</p>
           <h1 className="font-heading text-4xl sm:text-5xl text-white leading-tight">
@@ -279,47 +279,47 @@ export default function ApplyPage() {
       </div>
 
       {/* ── Form container ── */}
-      <div className="max-w-2xl mx-auto px-4 -mt-8 pb-16 relative z-10">
+      <div className="max-w-2xl mx-auto px-4 -mt-8 pb-16">
 
         {/* Section header chip */}
-        <div className="bg-surface-card/80 backdrop-blur-md border border-white/10 shadow-card px-6 py-4 mb-0.5 flex items-center justify-between rounded-t-lg">
+        <div className="bg-white border border-[#111827]/08 shadow-card px-6 py-4 mb-0.5 flex items-center justify-between">
           <div>
             <p className="label-tag">Section {step + 1} of {SECTIONS.length}</p>
-            <p className="font-heading text-xl text-white mt-0.5">{SECTIONS[step]}</p>
+            <p className="font-heading text-xl text-[#111827] mt-0.5">{SECTIONS[step]}</p>
           </div>
           <div className="hidden sm:flex gap-1">
             {SECTIONS.map((_, i) => (
               <div key={i}
-                className={`h-1 w-6 transition-colors ${i <= step ? 'bg-primary' : 'bg-[#111827]/10'}`} />
+                className={`h-1 w-6 transition-colors ${i <= step ? 'bg-[#3730A3]' : 'bg-[#111827]/10'}`} />
             ))}
           </div>
-          <div className="sm:hidden text-xs text-white/70">{progress}%</div>
+          <div className="sm:hidden text-xs text-[#6B7280]">{progress}%</div>
         </div>
 
         {/* Progress bar */}
         <div className="h-0.5 bg-[#111827]/06 mb-1">
-          <div className="h-full bg-primary transition-all duration-300" style={{ width: `${progress}%` }} />
+          <div className="h-full bg-[#3730A3] transition-all duration-300" style={{ width: `${progress}%` }} />
         </div>
 
         {/* Form card */}
-        <div className="bg-surface-card/80 backdrop-blur-md border border-white/10 shadow-card px-6 py-8 space-y-6 rounded-b-lg">
+        <div className="bg-white border border-[#111827]/08 shadow-card px-6 py-8 space-y-6">
 
           {/* ── Section 1: About You ── */}
           {step === 0 && (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Input theme="dark" label="First name *" value={form.firstName}
+                <Input label="First name *" value={form.firstName}
                   onChange={(e) => set('firstName', e.target.value)} required />
-                <Input theme="dark" label="Last name *" value={form.lastName}
+                <Input label="Last name *" value={form.lastName}
                   onChange={(e) => set('lastName', e.target.value)} required />
               </div>
-              <Input theme="dark" label="Email address *" type="email" value={form.email}
+              <Input label="Email address *" type="email" value={form.email}
                 onChange={(e) => set('email', e.target.value)} required
                 placeholder="you@example.com" />
-              <Input theme="dark" label="Phone number" type="tel" value={form.phone}
+              <Input label="Phone number" type="tel" value={form.phone}
                 onChange={(e) => set('phone', e.target.value)}
                 placeholder="+254 700 000 000" />
-              <Input theme="dark" label="Location — city / town, country" value={form.location}
+              <Input label="Location — city / town, country" value={form.location}
                 onChange={(e) => set('location', e.target.value)}
                 placeholder="e.g. Nairobi, Kenya" />
               <RadioGroup
@@ -336,7 +336,7 @@ export default function ApplyPage() {
                 onChange={(e) => set('workLink', e.target.value)}
                 placeholder="LinkedIn, GitHub, portfolio, social profile…"
               />
-              <p className="text-xs text-white/70">
+              <p className="text-xs text-[#6B7280]">
                 Share the link that best shows what you can do — LinkedIn, GitHub, a live product, Behance, or any public profile.
               </p>
             </>
@@ -351,14 +351,14 @@ export default function ApplyPage() {
                 value={form.stageGroup}
                 onChange={(v) => set('stageGroup', v)}
               />
-              <Textarea theme="dark"
+              <Textarea
                 label="Describe your idea or business"
                 rows={5}
                 value={form.ideaDescription}
                 onChange={(e) => set('ideaDescription', e.target.value)}
                 placeholder="What is the problem you're solving, who has it, and what is your solution? Be specific."
               />
-              <Textarea theme="dark"
+              <Textarea
                 label="What has already told you this problem is real?"
                 rows={4}
                 value={form.customerInsight}
@@ -377,7 +377,7 @@ export default function ApplyPage() {
           {/* ── Section 3: Your Role ── */}
           {step === 2 && (
             <>
-              <div className="bg-primary/20 border-l-4 border-primary px-4 py-3 text-sm text-white">
+              <div className="bg-[#EEF2FF] border-l-4 border-[#3730A3] px-4 py-3 text-sm text-[#111827]">
                 Every team of 5 needs all five functional roles filled. Select the one role you bring most strongly.
               </div>
               <RadioGroup
@@ -414,7 +414,7 @@ export default function ApplyPage() {
                 required
               />
               <div>
-                <Textarea theme="dark"
+                <Textarea
                   label="What will you ship in six weeks, and why now? *"
                   rows={6}
                   value={form.commitment}
@@ -422,7 +422,7 @@ export default function ApplyPage() {
                   placeholder="Be specific. What is the MVP you plan to build? Who will pay for it? What does success look like on Demo Day? Why are you ready to do this now and not six months from now?"
                   required
                 />
-                <p className="text-xs text-white/70 mt-1.5">
+                <p className="text-xs text-[#6B7280] mt-1.5">
                   This is the most important question. Take your time.
                 </p>
               </div>
@@ -443,26 +443,26 @@ export default function ApplyPage() {
               {/* Teammates — shown only for pre-formed teams */}
               {form.applyingAs === 'PRE_FORMED_TEAM' && (
                 <div>
-                  <p className="text-xs font-semibold text-white/70 uppercase tracking-widest mb-3">
+                  <p className="text-xs font-semibold text-[#6B7280] uppercase tracking-widest mb-3">
                     Your 4 teammates
                   </p>
-                  <p className="text-xs text-white/70 mb-4">
+                  <p className="text-xs text-[#6B7280] mb-4">
                     All 5 members of your team will each receive their own login credentials if accepted. Enter the details of your other 4 teammates below.
                   </p>
                   <div className="space-y-4">
                     {form.teammates.map((tm, i) => (
-                      <div key={i} className="bg-surface-alt/40 border border-white/10 p-4">
-                        <p className="text-xs text-white/70 font-semibold uppercase tracking-wider mb-3">
+                      <div key={i} className="bg-[#F8F7FF] border border-[#111827]/08 p-4">
+                        <p className="text-xs text-[#6B7280] font-semibold uppercase tracking-wider mb-3">
                           Teammate {i + 2}
                         </p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          <Input theme="dark" label="First name" value={tm.firstName}
+                          <Input label="First name" value={tm.firstName}
                             onChange={(e) => setTm(i, 'firstName', e.target.value)} />
-                          <Input theme="dark" label="Last name" value={tm.lastName}
+                          <Input label="Last name" value={tm.lastName}
                             onChange={(e) => setTm(i, 'lastName', e.target.value)} />
                         </div>
                         <div className="mt-3">
-                          <Input theme="dark" label="Email address" type="email" value={tm.email}
+                          <Input label="Email address" type="email" value={tm.email}
                             onChange={(e) => setTm(i, 'email', e.target.value)}
                             placeholder="teammate@example.com" />
                         </div>
@@ -474,7 +474,7 @@ export default function ApplyPage() {
 
               {/* Hardship reason */}
               {form.applyingAs === 'HARDSHIP' && (
-                <Textarea theme="dark"
+                <Textarea
                   label="Hardship reason"
                   rows={4}
                   value={form.hardshipReason}
@@ -496,7 +496,7 @@ export default function ApplyPage() {
           {/* ── Section 6: Final Step ── */}
           {step === 5 && (
             <>
-              <Textarea theme="dark"
+              <Textarea
                 label="Anything else you'd like us to know? (optional)"
                 rows={4}
                 value={form.additionalInfo}
@@ -505,7 +505,7 @@ export default function ApplyPage() {
               />
 
               <div>
-                <p className="text-xs font-semibold text-white/70 uppercase tracking-widest mb-3">
+                <p className="text-xs font-semibold text-[#6B7280] uppercase tracking-widest mb-3">
                   Confirmations — all three required to submit
                 </p>
                 <div className="space-y-3">
@@ -529,16 +529,16 @@ export default function ApplyPage() {
                     <label key={key}
                       className={`flex items-start gap-3 px-4 py-3 border cursor-pointer transition-all ${
                         checked
-                          ? 'border-primary bg-primary/20'
-                          : 'border-white/10 bg-surface-card hover:border-primary/40'
+                          ? 'border-[#3730A3] bg-[#EEF2FF]'
+                          : 'border-[#111827]/12 bg-white hover:border-[#3730A3]/40'
                       }`}>
                       <div
-                        className={`mt-0.5 w-4 h-4 border-2 flex items-center justify-center flex-shrink-0 rounded-sm transition-colors ${
-                          checked ? 'border-primary bg-primary' : 'border-white/20'
+                        className={`mt-0.5 w-4 h-4 border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
+                          checked ? 'border-[#3730A3] bg-[#3730A3]' : 'border-[#111827]/25'
                         }`}>
-                        {checked && <span className="text-white text-[10px] font-bold leading-none">✓</span>}
+                        {checked && <span className="text-[#111827] text-[10px] font-bold leading-none">✓</span>}
                       </div>
-                      <span className="text-sm text-white/70 leading-relaxed">{text}</span>
+                      <span className="text-sm text-[#6B7280] leading-relaxed">{text}</span>
                       <input type="checkbox" className="sr-only"
                         checked={checked} onChange={() => set(key, !checked)} />
                     </label>
@@ -546,8 +546,8 @@ export default function ApplyPage() {
                 </div>
               </div>
 
-              <div className="bg-surface-alt/40 border border-white/10 px-4 py-3 text-xs text-white/70 leading-relaxed">
-                <strong className="text-white">What happens next:</strong> We review all applications and send
+              <div className="bg-[#F8F7FF] border border-[#111827]/08 px-4 py-3 text-xs text-[#6B7280] leading-relaxed">
+                <strong className="text-[#111827]">What happens next:</strong> We review all applications and send
                 decisions by email between 18–21 June 2026. If accepted, you will receive your login credentials
                 and onboarding instructions. Accepted participants own 100% of any IP they create — Skillyme takes
                 no equity.
@@ -583,7 +583,7 @@ export default function ApplyPage() {
           </div>
         </div>
 
-        <p className="text-center text-xs text-white/50 mt-6 uppercase tracking-widest">
+        <p className="text-center text-xs text-[#6B7280]/60 mt-6 uppercase tracking-widest">
           Applications open 28 May 2026 · Close 17 June 2026 · Decisions 18–21 June
         </p>
       </div>
