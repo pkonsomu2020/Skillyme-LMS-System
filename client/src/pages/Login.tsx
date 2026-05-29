@@ -164,7 +164,7 @@ export default function Login() {
             <p className="text-xs text-[#6B7280] leading-relaxed">
               Forgot your password?{' '}
               <span className="text-[#3730A3] font-semibold">
-                Contact {config?.data.adminEmail ?? 'your admin'} to reset it.
+                Contact info@skillyme.africa to reset it.
               </span>
             </p>
             <p className="text-xs text-[#6B7280] mt-2.5">
